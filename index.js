@@ -43,16 +43,12 @@ $('.owl-carousel').owlCarousel({
 // 	}
 //   }
 
-window.addEventListener('load', function(event) {
-    document.querySelectorAll(".video").forEach((video) => {
-      video.onplay = function(event) {
-        event.preventDefault();
-        document.querySelectorAll(".video").forEach((playing) => {
-          if (video === playing)
-            playing.play();
-          else
-            playing.pause();
-        });
-      }
+$('.video').off('play').on('play', function() {
+    var dd = this.id
+    $('.video').each(function( index ) {
+        if(dd != this.id){
+            this.pause();
+            this.currentTime = 0;
+        }
     });
-  });
+});
