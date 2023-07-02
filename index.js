@@ -26,19 +26,33 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
-var videos = document.querySelectorAll('.video');
-for(var i=0; i<videos.length; i++)
-   videos[i].addEventListener('play', function(){pauseAll(this)}, true);
+// var videos = document.querySelectorAll('.video');
+// for(var i=0; i<videos.length; i++)
+//    videos[i].addEventListener('play', function(){pauseAll(this)}, true);
 
 
-function pauseAll(elem){
-	for(var i=0; i<videos.length; i++){
-		//Is this the one we want to play?
-		if(videos[i] == elem) continue;
-		//Have we already played it && is it already paused?
-		if(videos[i].played.length > 0 && !videos[i].paused){
-		// Then pause it now
-		  videos[i].pause();
-		}
-	}
-  }
+// function pauseAll(elem){
+// 	for(var i=0; i<videos.length; i++){
+// 		//Is this the one we want to play?
+// 		if(videos[i] == elem) continue;
+// 		//Have we already played it && is it already paused?
+// 		if(videos[i].played.length > 0 && !videos[i].paused){
+// 		// Then pause it now
+// 		  videos[i].pause();
+// 		}
+// 	}
+//   }
+
+window.addEventListener('load', function(event) {
+    document.querySelectorAll(".video").forEach((video) => {
+      video.onplay = function(event) {
+        event.preventDefault();
+        document.querySelectorAll(".video").forEach((playing) => {
+          if (video === playing)
+            playing.play();
+          else
+            playing.pause();
+        });
+      }
+    });
+  });
