@@ -5,7 +5,7 @@ var name = vd.name
 vidName.forEach(item => {
     // item.html('will')
     console.log(item);
-    item.innerHTML ='Will it rain today？'
+    item.innerHTML =`${item.id}`
 })
 
 $('.owl-carousel').owlCarousel({
