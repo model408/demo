@@ -43,12 +43,10 @@ $('.owl-carousel').owlCarousel({
 // 	}
 //   }
 
-$('.video').off('play').on('play', function() {
-    var dd = this.id
-    $('.video').each(function( index ) {
-        if(dd != this.id){
-            this.pause();
-            this.currentTime = 0;
-        }
-    });
+var $allVideos = $('.video');
+
+$('.video').on('play', function(e) {
+  $allVideos.not(this).each(function() {
+    this.pause()
+  })
 });
